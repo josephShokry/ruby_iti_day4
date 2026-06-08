@@ -1,0 +1,18 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @article %>
+
+<% if @article.image.attached? %>
+  <%= image_tag @article.image, width: 300 %>
+<% end %>
+
+<div>
+  <%= link_to "Edit this article", edit_article_path(@article) %> |
+  <%= link_to "Back to articles", articles_path %>
+
+  <%= button_to "Destroy this article", @article, method: :delete %>
+
+  <% if user_signed_in? && current_user != @article.user %>
+    <%= button_to "Report", report_article_path(@article), method: :patch %>
+  <% end %>
+</div>
